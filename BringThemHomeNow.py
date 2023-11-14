@@ -1,6 +1,7 @@
 import os
 import time
 import tweepy
+import json
 from shutil import move
 
 
@@ -13,14 +14,21 @@ class log:
         print(f"[Error] {text}")
 # The class for outputting console logs.
 
+try:
+    with open("config.json", "r") as unloaded_config:
+        config = json.load(unloaded_config)
+        log.success("Config has been loaded")
+except:
+    log.error("Config could not be loaded")
+    exit()
+# Loads the config.
 
 # Twitter API credentials
-consumer_key = ''
-consumer_secret = ''
-access_token = ''
-access_token_secret = ''
-#access_token = ''
-#access_token_secret = ''
+consumer_key = config["consumerKey"]
+consumer_secret = config["consumerSecret"]
+access_token = config["accessTokenKey"]
+access_token_secret = config["accessTokenSecret"]
+
 
 # Authenticate to Twitter
 auth = tweepy.OAuth1UserHandler(consumer_key, consumer_secret, access_token, access_token_secret )
@@ -34,8 +42,8 @@ log.info(f"Followers: {api.verify_credentials().followers_count}")
 time.sleep(1)
 
 # Directory containing images to be tweeted
-image_dir = '<Full Path>'
-published_dir = '<Full Path>'
+image_dir = config["directory"]
+published_dir = config["directory_pub"]
 
 client = tweepy.Client(consumer_key=consumer_key,
                        consumer_secret=consumer_secret,
@@ -55,7 +63,7 @@ def tweet_image():
             log.info(f"Media: {media}")
             filename = image_dir + image
             log.info(f"Filename: {filename}")
-            tweet = "#BringThemHomeNow"
+            tweet = config["tweetContent"]
             # Post tweet with image
             client.create_tweet(text=tweet, media_ids=[media.media_id])
             #api.update_status(status=tweet, media_ids=media_ids)
@@ -70,4 +78,4 @@ while True:
             if image.endswith(('.png', '.jpg', '.jpeg')):
                 move(f"{published_dir}/{image}", f"{image_dir}/{image}")
     tweet_image()
-    time.sleep(3600)
+    time.sleep(config["sleepTime"])
