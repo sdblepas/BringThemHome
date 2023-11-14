@@ -15,12 +15,12 @@ class log:
 
 
 # Twitter API credentials
-consumer_key = 'dXpYSxZsdZsAHW5dJOoVp4K1y'
-consumer_secret = 'eEm2CBbHerEh0H1hGxOdbtKNRt9pZItE81ZmwdzKWv3MVNuSSQ'
-access_token = '17509196-w7xWuphmwMiVVticFWODAJGMX6t0PHwHCqQzRMtLZ'
-access_token_secret = 'OInqaJpWUaqhUfP0ZDcXhohyNDR8dVge1bIchB3tkT3vj'
-#access_token = 'c3ZSTU9WMjZtRFFmYW85MmU5ZmE6MTpjaQ'
-#access_token_secret = 'ydSd7v8u-A2L8f0fXsK5jGNZDAEBFFxze0SJGwFKKti7c9e4r3'
+consumer_key = ''
+consumer_secret = ''
+access_token = ''
+access_token_secret = ''
+#access_token = ''
+#access_token_secret = ''
 
 # Authenticate to Twitter
 auth = tweepy.OAuth1UserHandler(consumer_key, consumer_secret, access_token, access_token_secret )
@@ -34,8 +34,8 @@ log.info(f"Followers: {api.verify_credentials().followers_count}")
 time.sleep(1)
 
 # Directory containing images to be tweeted
-image_dir = '/Users/benjamin/BringThemHomeNow/Otages/'
-published_dir = '/Users/benjamin/BringThemHomeNow/Otages_pub/'
+image_dir = '<Full Path>'
+published_dir = '<Full Path>'
 
 client = tweepy.Client(consumer_key=consumer_key,
                        consumer_secret=consumer_secret,
