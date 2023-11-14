@@ -15,3 +15,17 @@ Here's an overview of what the script does:
 
 Overall, the script automates the process of tweeting images with the hashtag "#BringThemHomeNow" by continuously checking for new images in the image_dir directory, uploading them to Twitter, and moving successfully tweeted images to the published_dir directory.
 
+## Configuration
+
+You need to add the proper credentials and folder path in the config.json
+
+    {
+        "consumerKey" : "",
+        "consumerSecret" : "",
+        "accessTokenKey" : "",
+        "accessTokenSecret" : "",
+        "directory" : "<PATH>>",
+        "directory_pub" : "PATH",
+        "sleepTime" : 3600,
+        "tweetContent" : "#BringThemBackNow"
+    }
