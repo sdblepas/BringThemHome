@@ -65,7 +65,7 @@ def tweet_image():
             log.info(f"Filename: {filename}")
             tweet = config["tweetContent"]
             # Post tweet with image
-            client.create_tweet(text=tweet, media_ids=[media.media_id])
+            client.create_tweet(text=tweet, media_ids=[media.media_id], reply_settings='mentionedUsers')
             #api.update_status(status=tweet, media_ids=media_ids)
             move(f"{image_dir}/{image}", f"{published_dir}/{image}")
             break
