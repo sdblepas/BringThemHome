@@ -1,19 +1,40 @@
 # BringThemHome
-Here's an overview of what the script does:
+# BringThemHomeNow Twitter Bot
 
-1. It imports the required libraries, including os, tweepy, and shutil.
-2. It sets up the Twitter API credentials, including the consumer key, consumer secret, client ID, and client secret.
-3. It authenticates to the Twitter API using the provided credentials.
-4. The script defines two directories: image_dir and published_dir. These directories represent the source directory where images to be tweeted are stored (image_dir) and the destination directory where successfully tweeted images are moved to (published_dir).
-5. The script defines a function named tweet_image() that performs the following steps:
-- It retrieves a list of images from the image_dir directory.
-- It iterates over the images and selects the first image that has a valid file extension (.png, .jpg, or .jpeg).
-- It uploads the selected image to Twitter using the Tweepy media_upload() method and retrieves the media ID of the uploaded image.
-- It posts a tweet with the uploaded image using the Tweepy update_status() method, including the media ID.
-- If the tweet is successfully posted, it moves the tweeted image from the image_dir directory to the published_dir directory.
-6. The script contains a loop that continuously calls the tweet_image() function. It checks if the image_dir directory is empty, and if so, it moves all images from the published_dir directory back to the image_dir directory. This ensures a continuous cycle of tweeting images from the image_dir directory.
+## Overview
+This script is designed to automate the process of tweeting images with a specific hashtag, counting the days since a particular date, and providing a precise duration in years, months, weeks, and days. It's particularly tailored for campaigns or movements that aim to raise awareness over time through social media, specifically Twitter.
 
-Overall, the script automates the process of tweeting images with the hashtag "#BringThemHomeNow" by continuously checking for new images in the image_dir directory, uploading them to Twitter, and moving successfully tweeted images to the published_dir directory.
+## Features
+- **Automated Tweeting**: Automatically tweets images from a specified directory with a custom message that includes the total number of days and a formatted duration since a specific start date.
+- **Image Management**: After tweeting an image, it moves the image to a "published" directory to avoid re-posting. If the source directory is empty, it moves all images back from the "published" directory to be tweeted again.
+- **Precise Duration Calculation**: Calculates the exact duration since a specified date in years, months, weeks, and days.
+- **Twitter API Integration**: Uses the Tweepy library for Twitter API integration, allowing for media uploads and tweet posting.
+
+## Requirements
+- Python 3.x
+- Tweepy library (`pip install tweepy`)
+
+## Setup
+1. **Twitter Developer Account**: You need a Twitter Developer account and a project/app created within it to get your API keys and tokens.
+2. **Install Dependencies**: Run `pip install tweepy` to install the necessary Python library.
+3. **Configure API Keys**: Replace the placeholder values for `consumer_key`, `consumer_secret`, `access_token`, and `access_token_secret` in the script with your actual Twitter API credentials.
+
+## Usage
+1. **Set the Start Date**: Modify the `precise_duration_since("07 October 2023")` call in the `tweet_image` function to your campaign's start date.
+2. **Specify Image Directories**: Update the `image_dir` and `published_dir` variables with the paths to your source and published image directories, respectively.
+3. **Run the Script**: Execute the script with Python. It will continuously run, tweeting an image every hour. Adjust the `time.sleep(3600)` call at the end of the script if you wish to change the frequency.
+
+## Important Notes
+- **Security**: Do not share your API keys and tokens publicly. Keep them secure and private.
+- **Rate Limits**: Be aware of Twitter's rate limits for API usage to avoid getting your account suspended.
+- **Image Formats**: The script currently supports `.png`, `.jpg`, and `.jpeg` image formats. Ensure your images are in these formats.
+
+## License
+This project is open-source and available under the MIT License. Feel free to fork, modify, and use it in your campaigns or projects.
+
+## Disclaimer
+This script is provided as is, without warranty of any kind. Use it at your own risk. The author is not responsible for any consequences arising from its use.
+
 
 ## Configuration
 
